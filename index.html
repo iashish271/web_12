@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Book of Talat</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Dancing+Script:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Floating Music Button -->
+    <div id="music-btn" class="music-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18V5l12-2v13"></path>
+            <circle cx="6" cy="18" r="3"></circle>
+            <circle cx="18" cy="16" r="3"></circle>
+        </svg>
+    </div>
+
+    <!-- Ambient Audio -->
+    <audio id="bg-music" loop>
+        <source src="images/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Particle Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Petal Canvas -->
+    <canvas id="petals-canvas"></canvas>
+
+    <!-- Sparkle Canvas -->
+    <canvas id="sparkles-canvas"></canvas>
+
+    <!-- Book Container -->
+    <div class="book-container">
+
+        <!-- ============ COVER / INTRO ============ -->
+        <section id="cover" class="chapter active">
+            <div class="bg-overlay" style="background-image: url('images/cover-bg.jpg')"></div>
+            <div class="chapter-content center">
+                <div class="book-cover-wrapper">
+                    <div class="magic-book">
+                        <div class="book-glow"></div>
+                        <div class="book-spine"></div>
+                        <div class="book-pages-edge"></div>
+                    </div>
+                </div>
+                <h1 class="book-title">The Book of Talat</h1>
+                <p class="book-subtitle">A story written with memories, wishes and love.</p>
+                <button class="open-book-btn" onclick="openBook()">
+                    <span>Open Book</span>
+                    <div class="btn-glow"></div>
+                </button>
+            </div>
+        </section>
+
+        <!-- ============ CHAPTER 1: ONCE UPON A TIME ============ -->
+        <section id="chapter1" class="chapter">
+            <div class="bg-overlay" style="background-image: url('images/ch1-oldpaper.jpg')"></div>
+            <div class="vignette-overlay"></div>
+            <div class="chapter-content center">
+                <div class="chapter-label">Chapter One</div>
+                <div class="handwriting-text" id="ch1-text">
+                    <span class="line" data-delay="0">Once upon a time...</span>
+                    <span class="line" data-delay="2000">The world became a little brighter.</span>
+                    <span class="line" data-delay="4500">A very special soul entered it.</span>
+                </div>
+                <div class="page-corner" onclick="nextChapter()"></div>
+            </div>
+        </section>
+
+        <!-- ============ CHAPTER 2: THE BEAUTIFUL STAR ============ -->
+        <section id="chapter2" class="chapter">
+            <div class="bg-overlay" style="background-image: url('images/ch2-starry.jpg')"></div>
+            <div class="chapter-content center">
+                <div class="chapter-label">Chapter Two</div>
+                <div class="star-container">
+                    <div class="star-glow"></div>
+                    <h2 class="reveal-name" id="reveal-name">Talat</h2>
+                    <span class="heart">&#10084;</span>
+                </div>
+                <p class="star-subtitle">The most beautiful star in my sky</p>
+                <div class="page-corner" onclick="nextChapter()"></div>
+            </div>
+        </section>
+
+        <!-- ============ CHAPTER 3: THE MEMORIES CHAPTER ============ -->
+        <section id="chapter3" class="chapter">
+            <div class="bg-overlay" style="background-image: url('images/ch3-scrapbook.jpg')"></div>
+            <div class="chapter-content">
+                <div class="chapter-label">Chapter Three</div>
+                <h2 class="scrapbook-title">The Memories Chapter</h2>
+                <div class="scrapbook-grid">
+                    <div class="polaroid" style="--rotation: -8deg; --delay: 0s">
+                        <div class="polaroid-img" style="background: linear-gradient(135deg, #ffeaa7, #fab1a0)"></div>
+                        <p class="polaroid-caption">That smile...</p>
+                    </div>
+                    <div class="polaroid" style="--rotation: 5deg; --delay: 0.5s">
+                        <div class="polaroid-img" style="background: linear-gradient(135deg, #a8e6cf, #dcedc1)"></div>
+                        <p class="polaroid-caption">Those eyes...</p>
+                    </div>
+                    <div class="polaroid" style="--rotation: -3deg; --delay: 1s">
+                        <div class="polaroid-img" style="background: linear-gradient(135deg, #ffd3b6, #ffaaa5)"></div>
+                        <p class="polaroid-caption">That laugh...</p>
+                    </div>
+                    <div class="polaroid" style="--rotation: 7deg; --delay: 1.5s">
+                        <div class="polaroid-img" style="background: linear-gradient(135deg, #c7ceea, #b5ead7)"></div>
+                        <p class="polaroid-caption">Forever...</p>
+                    </div>
+                </div>
+                <div class="page-corner" onclick="nextChapter()"></div>
+            </div>
+        </section>
+
+        <!-- ============ CHAPTER 4: THE THINGS I WISH FOR YOU ============ -->
+        <section id="chapter4" class="chapter">
+            <div class="bg-overlay" style="background-image: url('images/ch4-floral.jpg')"></div>
+            <div class="chapter-content center">
+                <div class="chapter-label">Chapter Four</div>
+                <h2 class="wishes-title">The Things I Wish For You</h2>
+                <div class="wishes-container" id="wishes-list">
+                    <p class="wish" data-delay="0">May your days be filled with sunshine...</p>
+                    <p class="wish" data-delay="1500">May your dreams always take flight...</p>
+                    <p class="wish" data-delay="3000">May love surround you everywhere...</p>
+                    <p class="wish" data-delay="4500">May your heart always be light...</p>
+                    <p class="wish" data-delay="6000">May every moment bring you joy...</p>
+                    <p class="wish" data-delay="7500">May your future be ever bright...</p>
+                </div>
+                <div class="page-corner" onclick="nextChapter()"></div>
+            </div>
+        </section>
+
+        <!-- ============ CHAPTER 5: THE BIRTHDAY CHAPTER ============ -->
+        <section id="chapter5" class="chapter">
+            <div class="bg-overlay" style="background-image: url('images/ch5-celebration.jpg')"></div>
+            <div class="chapter-content center">
+                <div class="chapter-label">Chapter Five</div>
+                <div class="birthday-number" id="birthday-num">19</div>
+                <div class="birthday-message" id="birthday-msg">
+                    <h2>Happy Birthday</h2>
+                    <h3>Talat <span class="heart">&#10084;</span></h3>
+                </div>
+                <canvas id="fireworks-canvas"></canvas>
+                <div class="page-corner" onclick="nextChapter()"></div>
+            </div>
+        </section>
+
+        <!-- ============ CHAPTER 6: THE SECRET LETTER ============ -->
+        <section id="chapter6" class="chapter">
+            <div class="bg-overlay" style="background-image: url('images/ch6-letter.jpg')"></div>
+            <div class="chapter-content center">
+                <div class="chapter-label">Chapter Six</div>
+                <h2 class="letter-title">The Secret Letter</h2>
+
+                <!-- Folded Letter -->
+                <div class="folded-letter" id="folded-letter" onclick="openLetter()">
+                    <div class="letter-glow"></div>
+                    <img src="images/wax-seal.png" class="wax-seal" alt="Wax Seal">
+                    <p class="tap-hint">Tap to open</p>
+                </div>
+
+                <!-- Opened Letter -->
+                <div class="opened-letter" id="opened-letter">
+                    <div class="letter-paper">
+                        <div class="letter-content" id="letter-text">
+                            <p class="letter-line" data-delay="0">My Dearest Talat,</p>
+                            <p class="letter-line" data-delay="2000">Every moment with you feels like a beautiful dream I never want to wake up from.</p>
+                            <p class="letter-line" data-delay="5000">You are the melody my heart beats to, the light that guides me through darkness.</p>
+                            <p class="letter-line" data-delay="8000">On this special day, I want you to know that you are loved beyond measure.</p>
+                            <p class="letter-line" data-delay="11000">You make my world complete.</p>
+                            <p class="letter-line" data-delay="14000">Forever yours,</p>
+                            <p class="letter-line signature" data-delay="16000">Ashish</p>
+                        </div>
+                    </div>
+                    <div class="close-letter-x" onclick="closeLetterAndNext()">&#10005;</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CHAPTER 7: THE REASONS YOU ARE SPECIAL ============ -->
+        <section id="chapter7" class="chapter">
+            <div class="bg-overlay" style="background-image: url('images/ch2-starry.jpg')"></div>
+            <div class="chapter-content center">
+                <div class="chapter-label">Chapter Seven</div>
+                <h2 class="reasons-title">The Reasons You Are Special</h2>
+                <div class="reasons-container" id="reasons-list">
+                    <p class="reason" data-delay="0">Your smile makes ordinary days feel beautiful.</p>
+                    <p class="reason" data-delay="2000">You are stronger than you realize.</p>
+                    <p class="reason" data-delay="4000">You are loved more than you know.</p>
+                    <p class="reason" data-delay="6000">Your kindness touches everyone around you.</p>
+                    <p class="reason" data-delay="8000">You make the world a better place.</p>
+                    <p class="reason" data-delay="10000">You are my favorite everything.</p>
+                </div>
+                <div class="page-corner" onclick="nextChapter()"></div>
+            </div>
+        </section>
+
+        <!-- ============ FINAL CHAPTER: THE LAST PAGE ============ -->
+        <section id="final" class="chapter">
+            <div class="bg-overlay" style="background-image: url('images/ch7-final.jpg')"></div>
+            <div class="chapter-content center">
+                <div class="final-text" id="final-text">
+                    <p class="final-line" data-delay="0">Every beautiful story has a final page...</p>
+                    <p class="final-line" data-delay="3000">But some people stay in our hearts forever.</p>
+                    <p class="final-line birthday-wish" data-delay="6000">Happy 19th Birthday Talat <span class="heart">&#10084;</span></p>
+                    <p class="final-line closing" data-delay="9000">Love,<br>Ashish</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Book Closing Overlay -->
+        <div id="book-close" class="book-close-overlay">
+            <div class="closing-book">
+                <div class="book-glow"></div>
+            </div>
+            <p class="closing-text">The End</p>
+        </div>
+
+    </div>
+
+    <!-- Page Turn Sound -->
+    <audio id="page-sound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBTGH0fPTgjMGHm7A7+OZURE" type="audio/wav">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
